@@ -20,4 +20,3 @@ export async function sendVerificationEmail(
         return{ success:false , message:'Failed to send Verification Code'}
     }
 }
-//test 
