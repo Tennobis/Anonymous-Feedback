@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -34,7 +34,11 @@ const page = () => {
       });
 
       toast.success("Success", {
-        description: response.data.message,
+        description: (
+          <span className="text-green-500 bg-white">
+            {response.data.message}
+          </span>
+        ),
       });
 
       router.replace("/sign-in");
@@ -43,7 +47,9 @@ const page = () => {
       const axiosError = error as AxiosError<ApiResponse>;
       let errorMessage = axiosError.response?.data.message;
       toast.error("Sign Up Failed", {
-        description: errorMessage,
+        description: (
+          <span className="text-red-500 bg-white">{errorMessage}</span>
+        ),
       });
     }
   };

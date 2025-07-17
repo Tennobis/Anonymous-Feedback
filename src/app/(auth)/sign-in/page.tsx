@@ -35,7 +35,9 @@ const page = () => {
     });
     if (result?.error) {
       toast.error("Login Failed", {
-        description:result.error,
+        description: (
+          <span className="text-red-500 bg-white">{result.error}</span>
+        ),
       });
     }
     if (result?.url) {

@@ -47,7 +47,7 @@ const page = () => {
         const response = await axios.get(
           `/api/check-username-uniqueness?username=${username}`
         );
-        let message= response.data.message
+        let message = response.data.message;
         setUsernameMessage(message);
       } catch (error) {
         const axiosError = error as AxiosError<ApiResponse>;
@@ -66,7 +66,11 @@ const page = () => {
     try {
       const response = await axios.post<ApiResponse>("/api/sign-up", data);
       toast.success("Success", {
-        description: response.data.message,
+        description: (
+          <span className="text-green-500 bg-white">
+            {response.data.message}
+          </span>
+        ),
       });
 
       router.replace(`/verify/${username}`);
@@ -76,7 +80,9 @@ const page = () => {
       const axiosError = error as AxiosError<ApiResponse>;
       let errorMessage = axiosError.response?.data.message;
       toast.error("Sign Up Failed", {
-        description: errorMessage,
+        description: (
+          <span className="text-red-500 bg-white">{errorMessage}</span>
+        ),
       });
       setIsSubmitting(false);
     }
