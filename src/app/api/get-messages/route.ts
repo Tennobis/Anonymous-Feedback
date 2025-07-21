@@ -20,10 +20,10 @@ export async function GET(req:Request){
         );
     }
 
-    const userById = new mongoose.Types.ObjectId(user.id) 
+    const userById = new mongoose.Types.ObjectId(user._id) 
     try {
         const user = await UserModel.aggregate([
-            { $match: {id: userById } },
+            { $match: {_id: userById } },
             { $unwind:'$messages'},
             { $sort: {'messages.createdAt':-1} },
             { $group: {_id:'$_id', messages: { $push:'$messages'} } } 
